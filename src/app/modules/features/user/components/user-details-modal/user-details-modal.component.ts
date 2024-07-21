@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, Output, SimpleChanges } from '@angular/core';
-import { User } from '../../models/user.model';
+import { User } from '@features/user/models/user.model';
 
 @Component({
   selector: 'app-user-details-modal',

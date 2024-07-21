@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { User, UserId } from '@features/user/models/user.model';
 import { UserService } from 'app/modules/core/services/user.service';
 import { map, Observable, of } from 'rxjs';
-import { User, UserId } from '../../models/user.model';
 
 @Component({
   selector: 'app-user-index',

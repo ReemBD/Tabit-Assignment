@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { User, UserId } from '../../models/user.model';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { User, UserId } from '@features/user/models/user.model';
 
 @Component({
   selector: 'app-user-table',
