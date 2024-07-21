@@ -1,3 +1,5 @@
 export const environment = {
-    apiUrl: 'https://jsonplaceholder.typicode.com'
-}
+  API_URL: 'https://jsonplaceholder.typicode.com',
+  APPLICATION_NAME: 'Tabita',
+  development: true,
+};

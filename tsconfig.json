@@ -17,6 +17,7 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
+    "strictNullChecks": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
