@@ -10,7 +10,7 @@ import { User, UserId } from '../../models/user.model';
 })
 export class UserIndexComponent {
   public users$: Observable<User[]>;
-  public userShown$: Observable<User | null> = of(null);
+  public userShown$: Observable<User> = of(null);
 
   public constructor(private readonly userService: UserService) {}
 

@@ -1,13 +1,15 @@
-<ng-container *ngIf="users$ | async; let users">
-  <app-user-list
-    [users]="users"
-    (showUserDetails)="onToggleUserDetails($event)"
-  >
-  </app-user-list>
-</ng-container>
+<div class="user-page">
+  <ng-container *ngIf="users$ | async; let users">
+    <app-user-table
+      [users]="users"
+      (showUserDetails)="onToggleUserDetails($event)"
+    >
+    </app-user-table>
+  </ng-container>
 
-<ng-container *ngIf="userShown$ | async; let userShown">
-  <app-modal-wrapper (clickOutside)="onToggleUserDetails($event)">
-    <app-user-details-modal [user]="userShown"> </app-user-details-modal>
-  </app-modal-wrapper>
-</ng-container>
+  <ng-container *ngIf="userShown$ | async; let userShown">
+    <app-modal-wrapper (clickOutside)="onToggleUserDetails($event)">
+      <app-user-details-modal [user]="userShown"> </app-user-details-modal>
+    </app-modal-wrapper>
+  </ng-container>
+</div>
