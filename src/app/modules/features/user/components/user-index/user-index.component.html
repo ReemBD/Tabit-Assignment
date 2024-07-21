@@ -7,9 +7,7 @@
 </ng-container>
 
 <ng-container *ngIf="userShown$ | async; let userShown">
-  <app-user-details-modal
-    [user]="userShown"
-    (closeUserDetails)="onToggleUserDetails($event)"
-  >
-  </app-user-details-modal>
+  <app-modal-wrapper (clickOutside)="onToggleUserDetails($event)">
+    <app-user-details-modal [user]="userShown"> </app-user-details-modal>
+  </app-modal-wrapper>
 </ng-container>

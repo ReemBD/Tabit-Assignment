@@ -13,11 +13,4 @@ export class UserDetailsModalComponent {
 
   public constructor(private elementRef: ElementRef) {}
 
-  // TODO: Refactor to generic modal component
-  @HostListener('document:click', ['$event'])
-  public onGlobalClick($event: Event): void {
-    const isClickOutside = !this.elementRef.nativeElement.contains($event.target);
-    if (!isClickOutside) return;
-    this.closeUserDetails.emit(null);
-  }
 }

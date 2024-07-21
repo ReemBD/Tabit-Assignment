@@ -1,0 +1,9 @@
+<div *ngIf="withBackdrop; else modalTemplate" class="modal-overlay">
+  <ng-container [ngTemplateOutlet]="modalTemplate"></ng-container>
+</div>
+
+<ng-template #modalTemplate>
+  <div #modal class="modal-wrapper">
+    <ng-content></ng-content>
+  </div>
+</ng-template>
