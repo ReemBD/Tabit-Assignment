@@ -1,4 +1,4 @@
-
+export type UserId = string;
 export interface Address {
   street: string;
   suite: string;
@@ -11,7 +11,7 @@ export interface Address {
 }
 
 export interface User {
-  id: number;
+  id: UserId;
   name: string;
   username: string;
   email: string;
