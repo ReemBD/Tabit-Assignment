@@ -10,7 +10,9 @@ import { LoggerService } from './logger.service';
 })
 export class UserService {
   private readonly BASE_PATH: string = '/users';
+
   private readonly usersSubject = new BehaviorSubject<User[]>(null);
+  public readonly users$ = this.usersSubject.asObservable();
 
   public constructor(
     private readonly http: HttpService,
