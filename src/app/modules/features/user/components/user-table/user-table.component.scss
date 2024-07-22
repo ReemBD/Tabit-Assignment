@@ -1,3 +1,7 @@
+:host {
+  width: min(75rem, 100%);
+}
+
 ::ng-deep .user-table {
   tbody tr {
     cursor: pointer;

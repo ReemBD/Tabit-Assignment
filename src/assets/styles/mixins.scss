@@ -1,4 +1,9 @@
-@mixin overlay($blur: true, $blur-amount: 5px, $background-color: rgba(0, 0, 0, 0.5), $z-index: 1000) {
+@mixin overlay(
+  $blur: true,
+  $blur-amount: 5px,
+  $background-color: rgba(0, 0, 0, 0.5),
+  $z-index: 1000
+) {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,4 +18,10 @@
   @if $blur {
     backdrop-filter: blur($blur-amount);
   }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

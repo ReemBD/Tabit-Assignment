@@ -1,19 +1,21 @@
-<div class="user-page">
-  @if (isFetching && !error) {
-  <p class="loading-screen">Fetching users...</p>
-  } @if (error) {
-  <p class="fallback-error">{{ error }}</p>
-  } @if (displayedUsers) {
-  <app-user-table
-    [users]="displayedUsers"
-    (sortUsers)="onSortUsers($event)"
-    (showUserDetails)="onToggleUserDetails($event)"
-  ></app-user-table>
-  } @if (shownUser) {
-  <app-user-details-modal
-    (closeUserDetails)="onToggleUserDetails($event)"
-    [user]="shownUser"
-  >
-  </app-user-details-modal>
-  }
+<div class="main-layout">
+  <div class="user-page">
+    @if (isFetching && !error) {
+    <p class="loading-screen">Fetching users...</p>
+    } @if (error) {
+    <p class="fallback-error">{{ error }}</p>
+    } @if (displayedUsers) {
+    <app-user-table
+      [users]="displayedUsers"
+      (sortUsers)="onSortUsers($event)"
+      (showUserDetails)="onToggleUserDetails($event)"
+    ></app-user-table>
+    } @if (shownUser) {
+    <app-user-details-modal
+      (closeUserDetails)="onToggleUserDetails($event)"
+      [user]="shownUser"
+    >
+    </app-user-details-modal>
+    }
+  </div>
 </div>

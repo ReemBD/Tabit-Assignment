@@ -32,5 +32,6 @@
     mat-row
     *matRowDef="let row; columns: displayedColumns"
     (dblclick)="onShowUserDetails(row.id)"
+    (touchend)="onShowUserDetails(row.id)"
   ></tr>
 </table>

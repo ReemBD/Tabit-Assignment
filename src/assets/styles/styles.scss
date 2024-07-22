@@ -1,7 +1,11 @@
 @use "@angular/material" as mat;
-@import "theme.scss";
-@import "reset.scss";
+@import "theme";
+@import "reset";
+@import "layout";
 
+* {
+  box-sizing: border-box;
+}
 html,
 body {
   height: 100%;
@@ -12,4 +16,8 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: mat.get-theme-color($theme, neutral, 20);
   color: mat.get-theme-color($theme, neutral, 100);
+}
+
+button {
+  cursor: pointer;
 }

@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 
-enum LogLevel {
+const enum LogLevel {
   Debug = 'Debug',
   Information = 'Information',
   Warning = 'Warning',
@@ -21,47 +21,29 @@ export class LoggerService {
   public log(message: unknown, ...optionalParams: unknown[]): void {
     if (!this.shouldWriteLog()) return;
 
-    console.log(
-      this.buildLogPrefix(LogLevel.Information),
-      message,
-      ...optionalParams
-    );
+    console.log(this.buildLogPrefix(LogLevel.Information), message, ...optionalParams);
   }
 
   public debug(message: unknown, ...optionalParams: unknown[]): void {
     if (!this.shouldWriteLog()) return;
 
-    console.debug(
-      this.buildLogPrefix(LogLevel.Debug),
-      message,
-      ...optionalParams
-    );
+    console.debug(this.buildLogPrefix(LogLevel.Debug), message, ...optionalParams);
   }
 
   public warn(message: unknown, ...optionalParams: unknown[]): void {
     if (!this.shouldWriteLog()) return;
 
-    console.warn(
-      this.buildLogPrefix(LogLevel.Warning),
-      message,
-      ...optionalParams
-    );
+    console.warn(this.buildLogPrefix(LogLevel.Warning), message, ...optionalParams);
   }
 
   public error(message: unknown, ...optionalParams: unknown[]): void {
     if (!this.shouldWriteLog()) return;
 
-    console.error(
-      this.buildLogPrefix(LogLevel.Error),
-      message,
-      ...optionalParams
-    );
+    console.error(this.buildLogPrefix(LogLevel.Error), message, ...optionalParams);
   }
 
   private buildLogPrefix(logLevel: LogLevel): string {
-    const timestamp: string = new Date()
-      .toString()
-      .substring(0, this.maxCharToTakeFromDate);
+    const timestamp: string = new Date().toString().substring(0, this.maxCharToTakeFromDate);
     const template: string = `${logLevel}: [${timestamp}] [${this.applicationName}]`;
 
     return template;

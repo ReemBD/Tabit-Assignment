@@ -8,8 +8,16 @@ import { UserDetailsModalComponent } from './components/user-details-modal/user-
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { SharedDirectivesModule } from 'app/modules/shared/directives/shared-directives.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [UserIndexComponent, UserTableComponent, UserDetailsModalComponent],
-  imports: [CommonModule, UserRoutingModule, MatTableModule, MatSortModule, SharedDirectivesModule],
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    MatTableModule,
+    MatSortModule,
+    SharedDirectivesModule,
+    ReactiveFormsModule,
+  ],
 })
 export class UserModule {}

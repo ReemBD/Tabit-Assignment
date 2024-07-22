@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { RoutingName } from './modules/core/models/routing-name.model';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/user', pathMatch: 'full' },
   {
     path: RoutingName.User,
-    loadChildren: () =>
-      import('./modules/features/user/user.module').then((m) => m.UserModule),
+    loadChildren: () => import('./modules/features/user/user.module').then((m) => m.UserModule),
   },
 ];
 

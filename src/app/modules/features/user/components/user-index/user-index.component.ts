@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
-import { catchError, map, throwError } from 'rxjs';
+import { catchError, map, takeUntil, throwError } from 'rxjs';
 
 import { LoggerService } from '@core/services/logger.service';
 import { UserService } from '@core/services/user.service';
 import { User, UserId } from '@features/user/models/user.model';
+import { DestroyCleanupSubject } from '@core/helpers/destroy-cleanup-subject.helper';
+import { SupportedSortingColumns } from '@features/user/models/user-sort.model';
 
 @Component({
   selector: 'app-user-index',
@@ -12,6 +14,8 @@ import { User, UserId } from '@features/user/models/user.model';
   styleUrl: './user-index.component.scss',
 })
 export class UserIndexComponent implements OnInit {
+  private readonly cleanupStream = new DestroyCleanupSubject();
+
   public isFetching: boolean;
   public error: Error;
   public displayedUsers: User[];
@@ -25,6 +29,9 @@ export class UserIndexComponent implements OnInit {
   public get sort(): Sort {
     return this._sort;
   }
+  private get defaultSort(): Sort {
+    return { direction: 'asc', active: 'name' };
+  }
 
   public constructor(
     private readonly userService: UserService,
@@ -32,6 +39,29 @@ export class UserIndexComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
+    this.fetchUsers();
+    this.subscribeUsers();
+  }
+
+  public ngOnDestroy(): void {
+    this.cleanupStream.cleanup();
+  }
+
+  public onToggleUserDetails($event: UserId): void {
+    this.shownUser = this.displayedUsers.find((user) => user.id === $event);
+  }
+
+  public onSortUsers($event: Sort): void {
+    this.sort = $event;
+  }
+
+  private subscribeUsers(): void {
+    this.userService.users$
+      .pipe(takeUntil(this.cleanupStream))
+      .subscribe((users) => (this.displayedUsers = users));
+  }
+
+  private fetchUsers(): void {
     this.isFetching = true;
     this.userService
       .fetchUsers()
@@ -52,27 +82,14 @@ export class UserIndexComponent implements OnInit {
           this.isFetching = false;
         },
       });
-    this.userService.users$.subscribe((users) => (this.displayedUsers = users));
-  }
-
-  public onToggleUserDetails($event: UserId): void {
-    this.shownUser = this.displayedUsers.find((user) => user.id === $event);
-  }
-
-  public onSortUsers($event: Sort): void {
-    this.sort = $event;
   }
 
   private sortUsers(users: User[]): User[] {
-    const active = this.sort.active as 'email' | 'name';
+    const active = this.sort.active as SupportedSortingColumns;
     return users.sort((u1, u2) =>
       this.sort.direction === 'asc'
         ? u1[active].localeCompare(u2[active])
         : u2[active].localeCompare(u1[active])
     );
-  }
-
-  private get defaultSort(): Sort {
-    return { direction: 'asc', active: 'name' };
   }
 }

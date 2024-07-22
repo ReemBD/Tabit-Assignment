@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, take, tap } from 'rxjs/operators';
 import { HttpService } from './http.service';
 import { User } from 'app/modules/features/user/models/user.model';
 import { LoggerService } from './logger.service';
@@ -23,6 +23,19 @@ export class UserService {
     );
   }
 
+  public updateUser(uid: string, changes: Partial<User>) {
+    return this.users$.pipe(
+      take(1),
+      map((users: User[]) => {
+        const oldUser = users.find((user) => user.id === uid);
+        const updatedUser: User = { ...oldUser, ...changes };
+        const updatedUsers: User[] = users.map((user) => (user.id === uid ? updatedUser : user));
+
+        this.usersSubject.next(updatedUsers);
+        return updatedUser;
+      })
+    );
+  }
   private handleError<T>(operation = 'operation') {
     return (error: Error): Observable<T> => {
       this.logger.error(`${operation} failed: ${error.message}`);
