@@ -1,4 +1,6 @@
-@import "helpers.scss";
+@use "@angular/material" as mat;
+@import "theme.scss";
+@import "reset.scss";
 
 html,
 body {
@@ -8,5 +10,6 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background: var(--palette-neutral-100);
+  background: mat.get-theme-color($theme, neutral, 20);
+  color: mat.get-theme-color($theme, neutral, 100);
 }

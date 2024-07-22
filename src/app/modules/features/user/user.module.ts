@@ -7,8 +7,9 @@ import { UserTableComponent } from './components/user-table/user-table.component
 import { UserDetailsModalComponent } from './components/user-details-modal/user-details-modal.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { SharedDirectivesModule } from 'app/modules/shared/directives/shared-directives.module';
 @NgModule({
   declarations: [UserIndexComponent, UserTableComponent, UserDetailsModalComponent],
-  imports: [CommonModule, UserRoutingModule, MatTableModule, MatSortModule],
+  imports: [CommonModule, UserRoutingModule, MatTableModule, MatSortModule, SharedDirectivesModule],
 })
 export class UserModule {}

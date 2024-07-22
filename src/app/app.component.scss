@@ -1,0 +1,16 @@
+@use "@angular/material" as mat;
+@import "theme.scss";
+.app-header {
+  height: 6rem;
+  background: mat.get-theme-color($theme, primary, 20);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+
+  .logo {
+    text-transform: lowercase;
+    font-size: 3rem;
+  }
+}
