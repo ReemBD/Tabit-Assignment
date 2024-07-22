@@ -5,10 +5,10 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserTableComponent } from './components/user-table/user-table.component';
 
 import { UserDetailsModalComponent } from './components/user-details-modal/user-details-modal.component';
-import { SharedModule } from 'app/modules/shared/shared.module';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [UserIndexComponent, UserTableComponent, UserDetailsModalComponent],
-  imports: [CommonModule, UserRoutingModule, MatTableModule, SharedModule],
+  imports: [CommonModule, UserRoutingModule, MatTableModule, MatSortModule],
 })
 export class UserModule {}

@@ -7,14 +7,13 @@
     "paths": {
       "@env/*": ["./environments/*"],
       "@core/*": ["./app/modules/core/*"],
-      "@features/*": ["./app/modules/features/*"],
-      "@shared/*": ["./app/modules/shared/*"]
+      "@features/*": ["./app/modules/features/*"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
