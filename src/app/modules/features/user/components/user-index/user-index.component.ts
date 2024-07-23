@@ -67,9 +67,6 @@ export class UserIndexComponent implements OnInit {
       .fetchUsers()
       .pipe(
         map((users) => this.sortUsers(users)),
-        tap(([user]) => {
-          this.shownUser = user;
-        }),
         catchError((err) =>
           throwError(() => {
             this.logger.error('something went wrong while trying to display users ', err);
