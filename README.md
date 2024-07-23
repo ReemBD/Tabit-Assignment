@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## First Steps
 Copy the Repo to your local computer,
-and run npm install from the root of the project.
+and run `npm install` from the root of the project.
 
 ## Development server
 
