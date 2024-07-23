@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
-import { catchError, map, takeUntil, tap, throwError } from 'rxjs';
+import { catchError, map, takeUntil, throwError } from 'rxjs';
 
 import { LoggerService } from '@core/services/logger.service';
 import { UserService } from '@core/services/user.service';
