@@ -11,7 +11,11 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { createPhoneValidator, createWebsiteLinkValidator } from '@core/helpers/validations.helper';
+import {
+  createNameValidator,
+  createPhoneValidator,
+  createWebsiteLinkValidator,
+} from '@core/helpers/validations.helper';
 import { UserService } from '@core/services/user.service';
 import { User } from '@features/user/models/user.model';
 
@@ -66,9 +70,12 @@ export class UserDetailsModalComponent implements OnInit {
 
   private initForm(): void {
     this.userForm = this.formBuilder.group({
-      name: [this.user.name, [Validators.required, Validators.maxLength(20)]],
+      name: [
+        this.user.name,
+        [Validators.required, Validators.maxLength(20), createNameValidator()],
+      ],
       email: [{ value: this.user.email, disabled: true }, [Validators.email]],
-      phone: [this.user.phone, [createPhoneValidator()]],
+      phone: [this.user.phone, [Validators.required, createPhoneValidator()]],
       website: [this.user.website, [createWebsiteLinkValidator()]],
     });
   }
