@@ -24,15 +24,12 @@ export class UserService {
   }
 
   public updateUser(userId: string, changes: Partial<User>) {
-    return this.users$.pipe(
-      take(1),
-      map((users: User[]) => {
-        const oldUser = users.find((user) => user.id === userId);
-        const updatedUser: User = { ...oldUser, ...changes };
-        const updatedUsers: User[] = users.map((user) => (user.id === userId ? updatedUser : user));
-
-        this.usersSubject.next(updatedUsers);
-        return updatedUser;
+    return this.http.patch<User>(`${this.BASE_PATH}/${userId}`, JSON.stringify(changes)).pipe(
+      tap((updatedUser: User) => {
+        this.updateUsersSubject((users: User[]) => {
+          // ! API Doesnt actually work, so update manually
+          return users.map((user) => (user.id === userId ? { ...updatedUser, ...changes } : user));
+        });
       }),
       catchError(this.handleError<User>('updateUser'))
     );
@@ -43,5 +40,12 @@ export class UserService {
       this.logger.error(message);
       return throwError(() => new Error(message));
     };
+  }
+
+  private updateUsersSubject(updateFn: (users: User[]) => User[]): void {
+    this.usersSubject.pipe(take(1)).subscribe((users) => {
+      const newUsers = updateFn(users);
+      this.usersSubject.next(newUsers);
+    });
   }
 }

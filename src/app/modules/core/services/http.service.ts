@@ -11,13 +11,17 @@ export class HttpService {
   public constructor(private readonly httpClient: HttpClient) {}
 
   public get<T>(path: string, queryParams?: HttpParams): Observable<T> {
-    return this.httpClient.get<T>(`${environment.API_URL}${path}`, {
-      params: queryParams,
-      responseType: 'json',
-    });
+    path = `${environment.API_URL}${path}`;
+    return this.httpClient.get<T>(path, { params: queryParams, responseType: 'json' });
   }
 
   public post<T>(path: string, args: unknown): Observable<T> {
-    return this.httpClient.post<T>(`${environment.API_URL}${path}`, args, { responseType: 'json' });
+    path = `${environment.API_URL}${path}`;
+    return this.httpClient.post<T>(path, args, { responseType: 'json' });
+  }
+
+  public patch<T>(path: string, args: unknown): Observable<T> {
+    path = `${environment.API_URL}${path}`;
+    return this.httpClient.patch<T>(path, args, { responseType: 'json' });
   }
 }
