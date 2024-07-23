@@ -1,3 +1,9 @@
+$break-mobile: 700px;
+$break-narrow: 700px;
+$break-normal: 1000px;
+$break-wide: 1360px;
+$break-X-wide: 1600px;
+
 @mixin for-mobile-layout {
   @media (max-width: $break-narrow) {
     @content;
