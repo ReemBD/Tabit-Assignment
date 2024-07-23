@@ -1,9 +1,18 @@
 :host {
   width: min(75rem, 100%);
+  height: 100%;
 }
 
 ::ng-deep .user-table {
   tbody tr {
     cursor: pointer;
+  }
+
+  &.mat-mdc-table {
+    background: var(--theme-neutral-10);
+    td,
+    th {
+      color: var(--theme-neutral-100);
+    }
   }
 }

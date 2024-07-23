@@ -1,55 +1,37 @@
 <div class="modal-overlay">
   <div #modal class="user-details-modal">
     <header>
-      <h1>
+      <h1 class="title">
         {{ user.name }}
       </h1>
     </header>
     <div class="close-btn" (click)="closeUserDetails.emit()">&times;</div>
     @if(userForm) {
     <form class="user-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <div class="form-field name-field">
-        <div class="input-label-container">
-          <label for="name"> Name: </label>
-          <input type="text" formControlName="name" id="name" />
+      <div class="fields-container">
+        <div class="form-field name-field">
+            <label for="name"> Name: </label>
+            <input type="text" formControlName="name" id="name" />
         </div>
-        <ng-container
-          [ngTemplateOutlet]="errorMsg"
-          [ngTemplateOutletContext]="{ field: 'name' }"
-        ></ng-container>
-      </div>
+        @if (!isFieldValid('name')) {<div class="error-msg">Please enter a valid name</div>}
 
-      <div class="form-field email-field">
-        <div class="input-label-container">
-          <label for="email"> Email: </label>
-          <input type="email" formControlName="email" />
+        <div class="form-field email-field">
+            <label for="email"> Email: </label>
+            <input type="email" formControlName="email" />
         </div>
-        <ng-container
-          [ngTemplateOutlet]="errorMsg"
-          [ngTemplateOutletContext]="{ field: 'email' }"
-        ></ng-container>
-      </div>
+        @if (!isFieldValid('email')) {<div class="error-msg">Please enter a valid email</div>}
 
-      <div class="form-field phone-field">
-        <div class="input-label-container">
-          <label for="phone">Phone:</label>
-          <input type="phone" formControlName="phone" />
+        <div class="form-field phone-field">
+            <label for="phone">Phone:</label>
+            <input type="phone" formControlName="phone" />
         </div>
-        <ng-container
-          [ngTemplateOutlet]="errorMsg"
-          [ngTemplateOutletContext]="{ field: 'phone' }"
-        ></ng-container>
-      </div>
+        @if (!isFieldValid('phone')) {<div class="error-msg">Please enter a valid Israeli phone</div>}
 
-      <div class="form-field website-field">
-        <div class="input-label-container">
-          <label for="website">Website:</label>
-          <input type="string" formControlName="website" />
+        <div class="form-field website-field">
+            <label for="website">Website:</label>
+            <input type="string" formControlName="website" />
         </div>
-        <ng-container
-          [ngTemplateOutlet]="errorMsg"
-          [ngTemplateOutletContext]="{ field: 'website' }"
-        ></ng-container>
+        @if (!isFieldValid('website')) {<div class="error-msg">Please enter a valid website</div>}
       </div>
       <div class="action-btns-container">
         <button class="submit-btn" type="submit" [disabled]="userForm.errors">
@@ -60,9 +42,3 @@
     }
   </div>
 </div>
-
-<ng-template #errorMsg let-field="field">
-  @if (!isFieldValid(field)) {
-  <div class="error-msg">Please enter a valid {{ field }}</div>
-  }
-</ng-template>

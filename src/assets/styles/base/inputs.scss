@@ -1,0 +1,20 @@
+input {
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  &[disabled] {
+    background: var(--theme-neutral-70);
+  }
+}
+
+.form-field {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  label {
+    flex-basis: 15%;
+  }
+  input {
+    flex-grow: 1;
+  }
+}

@@ -1,33 +1,40 @@
-@use "@angular/material" as mat;
 @use "mixins" as mixins;
-@import "theme";
+
+.modal-overlay {
+  @include mixins.overlay;
+}
 
 .user-details-modal {
-  @include mixins.flex-center;
+  --modal-title-font-size: 2rem;
+  --modal-padding-inline: 2rem;
+  --modal-padding-block: 3rem;
 
+  @include mixins.flex-center;
   flex-direction: column;
 
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: mat.get-theme-color($theme, primary, 10);
-  border-radius: 0.5em;
+  background: var(--theme-primary-10);
+  border-radius: 1rem;
 
   width: min(100vw, 50rem);
-  height: min(100vh, 50rem);
-  padding: 4rem;
 
   header {
     width: 100%;
+    padding-inline: var(--modal-padding-inline);
     border-bottom: 1px solid #fff;
+  }
+
+  .title {
+    font-size: var(--modal-title-font-size);
   }
 
   .action-btns-container {
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    margin-top: 2rem;
 
     & > *:not(:last-child) {
       margin-right: 1rem;
@@ -37,47 +44,36 @@
       width: 8rem;
       padding-block: 0.5rem;
       text-align: center;
-      border: 1px solid mat.get-theme-color($theme, tertiary, 40);
+      border: 1px solid var(--theme-tertiary-40);
       border-radius: 1rem;
       transition: background 0.2s;
 
       &:hover {
-        background: mat.get-theme-color($theme, tertiary, 40);
+        background: var(--theme-tertiary-40);
       }
     }
   }
 }
 
 .user-form {
-  @include mixins.flex-center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   flex-direction: column;
 
   width: 100%;
   height: 100%;
-  padding: 2rem;
 
-  & > *:not(:last-child) {
-    margin-bottom: 1rem;
-  }
+  padding-inline: var(--modal-padding-inline);
+  padding-block: var(--modal-padding-block);
 
-  .form-field {
+  .fields-container {
     width: 100%;
-  }
-  .input-label-container {
-    width: 100%;
-    display: flex;
+    margin-bottom: 2rem;
 
-    input {
-      flex-grow: 1;
+    & > *:not(:last-child) {
+      margin-bottom: 1rem;
     }
-
-    label {
-      width: 5rem;
-    }
-  }
-
-  input[disabled] {
-    background: mat.get-theme-color($theme, neutral, 70);
   }
 
   .error-msg {
@@ -87,12 +83,8 @@
 
 .close-btn {
   position: absolute;
-  right: 1rem;
-  top: 1rem;
-  font-size: 2rem;
+  top: 1.4rem;
+  right: var(--modal-padding-inline);
+  font-size: var(--modal-title-font-size);
   cursor: pointer;
-}
-
-.modal-overlay {
-  @include mixins.overlay;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
-import { catchError, map, takeUntil, throwError } from 'rxjs';
+import { catchError, map, takeUntil, tap, throwError } from 'rxjs';
 
 import { LoggerService } from '@core/services/logger.service';
 import { UserService } from '@core/services/user.service';
@@ -67,6 +67,9 @@ export class UserIndexComponent implements OnInit {
       .fetchUsers()
       .pipe(
         map((users) => this.sortUsers(users)),
+        tap(([user]) => {
+          this.shownUser = user;
+        }),
         catchError((err) =>
           throwError(() => {
             this.logger.error('something went wrong while trying to display users ', err);

@@ -1,23 +1,6 @@
-@use "@angular/material" as mat;
-@import "theme";
-@import "reset";
+@import "setup/theme";
+@import "setup/reset";
+@import "setup/normalize";
+@import "base/inputs";
 @import "layout";
 
-* {
-  box-sizing: border-box;
-}
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  background: mat.get-theme-color($theme, neutral, 20);
-  color: mat.get-theme-color($theme, neutral, 100);
-}
-
-button {
-  cursor: pointer;
-}

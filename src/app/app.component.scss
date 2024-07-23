@@ -1,9 +1,8 @@
-@use "@angular/material" as mat;
-@import "theme";
-
 .app-header {
-  height: 6rem;
-  background: mat.get-theme-color($theme, primary, 20);
+  position: fixed;
+  width: 100%;
+  height: var(--app-header-height);
+  background: var(--theme-primary-20);
 
   .nav-container {
     display: flex;
