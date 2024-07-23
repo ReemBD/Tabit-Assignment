@@ -17,19 +17,19 @@
 
         <div class="form-field email-field">
             <label for="email"> Email: </label>
-            <input type="email" formControlName="email" />
+            <input type="email" formControlName="email" id="email"/>
         </div>
         @if (!isFieldValid('email')) {<div class="error-msg">Please enter a valid email</div>}
 
         <div class="form-field phone-field">
             <label for="phone">Phone:</label>
-            <input type="phone" formControlName="phone" />
+            <input type="phone" formControlName="phone" id="phone"/>
         </div>
         @if (!isFieldValid('phone')) {<div class="error-msg">Please enter a valid Israeli phone</div>}
 
         <div class="form-field website-field">
             <label for="website">Website:</label>
-            <input type="string" formControlName="website" />
+            <input type="string" formControlName="website" id="website" />
         </div>
         @if (!isFieldValid('website')) {<div class="error-msg">Please enter a valid website</div>}
       </div>
