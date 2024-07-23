@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { catchError, map, takeUntil, tap, throwError } from 'rxjs';
 
@@ -13,7 +13,7 @@ import { SupportedSortingColumns } from '@features/user/models/user-sort.model';
   templateUrl: './user-index.component.html',
   styleUrl: './user-index.component.scss',
 })
-export class UserIndexComponent implements OnInit {
+export class UserIndexComponent implements OnInit, OnDestroy {
   private readonly cleanupStream = new DestroyCleanupSubject();
 
   public isFetching: boolean;
